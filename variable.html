@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Personalized Greeting</title>
+  <style>
+    /* General body styling */
+    body {
+      background-color: antiquewhite;
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-top: 100px;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 32px;
+    }
+
+    label {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 250px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #103e12;
+    }
+
+    #greetingMessage {
+      font-size: 24px;
+      color: #222;
+      margin-top: 30px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Welcome to My Website</h2>
+
+  <!-- Input for name -->
+  <label for="username">Enter your name:</label>
+  <input type="text" id="username" placeholder="e.g., Alice">
+
+  <!-- Button to trigger greeting -->
+  <button onclick="showGreeting()">Submit</button>
+
+  <!-- Empty paragraph to display greeting -->
+  <p id="greetingMessage"></p>
+
+  <!-- JavaScript Code -->
+  <script>
+    function showGreeting() {
+      let name = document.getElementById("username").value;
+
+      // Check if input is empty
+      if (name.trim() === "") {
+        document.getElementById("greetingMessage").textContent = "Please enter your name!";
+        document.getElementById("greetingMessage").style.color = "red";
+        return;
+      }
+
+      let message = "Hello, " + name + "! Welcome to the site.";
+      document.getElementById("greetingMessage").textContent = message; // display the greetings
+      document.getElementById("greetingMessage").style.color = "#222"; // Reset color if it was red
+    }
+  </script>
+
+</body>
+</html>

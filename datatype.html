@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data types</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .profile-box {
+      background-color: #ffffff;
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .error {
+      color: red;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-box">
+    <h2>User Profile</h2>
+    <p id="userName"></p>
+    <p id="userAge"></p>
+    <p id="userStatus"></p>
+    <p id="userHobbies"></p>
+    <p id="userDetails"></p>
+    <p id="userBio"></p>
+    <p id="userScore"></p>
+  </div>
+
+  <script>
+    // 1. String
+    let name = "Sowmiya Ravichandran";
+
+    // 2. Number
+    var age = 21;
+
+    // 3. Boolean
+    let isOnline = true;
+
+    // 4. Array
+    let hobbies = ["Reading", "Cooking", "Traveling"];
+
+    // 5. Object
+    let address = {
+      city: "Coimbatore",
+      country: "India"
+    };
+
+    // 6. null (bio is intentionally empty)
+    let bio = null;
+
+    // 7. undefined (score not yet given)didn’t assign any value to it.
+    let score=100;
+
+    // Displaying values in the HTML
+    document.getElementById("userName").textContent = " Name: " + name;
+    document.getElementById("userAge").textContent = " Age: " + age;
+
+    // Boolean check for online/offline
+    document.getElementById("userStatus").textContent = " Status: " + (isOnline ? "Online " : "Offline ");
+
+    // Display array(Joins all items in the array into one string, separated by commas)
+    document.getElementById("userHobbies").textContent = " Hobbies: " + hobbies.join(", ");
+
+    // Display object values
+    document.getElementById("userDetails").textContent = " Location: " + address.city + ", " + address.country;
+
+    // Handle null
+    document.getElementById("userBio").textContent = bio === null ? " Bio: Not added yet." : bio;
+
+    // Handle undefined
+    document.getElementById("userScore").textContent = typeof score === "undefined"
+      ? " Score: Not assigned yet."
+      : " Score: " + score;
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Operators</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      padding: 20px;
+      background-color: antiquewhite;
+      max-width: 600px;
+      margin: auto; /* center page content */
+    }
+    label, input, button {
+      margin: 10px 0;
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      font-size: 16px;
+    }
+    input {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      max-width: 150px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #output { 
+      margin-top: 25px; 
+      white-space: pre-line;  /*And this is on a new line */
+      text-align: center;          /* center text inside output */
+      background-color: #fff8dc;   /* light background */
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      max-width: 400px;
+      margin-left: auto;           /* center output box */
+      margin-right: auto;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      font-weight: 500;
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">Shopping Cart</h2>
+
+  <label for="itemName">Item Name:</label>
+  <input type="text" id="itemName" placeholder="Enter item name">
+
+  <label for="itemPrice">Price (₹):</label>
+  <input type="number" id="itemPrice" placeholder="Enter price">
+
+  <label for="quantity">Quantity:</label>
+  <input type="number" id="quantity" placeholder="Enter quantity">
+
+  <button onclick="addToCart()">Add to Cart</button>
+  <button onclick="applyDiscount()">Apply Discount</button>
+
+  <div id="output"></div>
+
+  <script>
+    var cart = [];  
+    let discount = 0; 
+
+    function addToCart() {
+      let name = document.getElementById('itemName').value;
+      let price = Number(document.getElementById('itemPrice').value);
+      let quantity = Number(document.getElementById('quantity').value);
+
+      if (name === "" || price <= 0 || quantity <= 0) {
+        alert("Please enter valid item details.");
+        return;
+      }
+
+      let item = {
+        name: name,
+        price: price,
+        quantity: quantity
+      };
+
+      cart.push(item);
+
+      displayCart();
+    }
+
+    function applyDiscount() {
+      let total = calculateTotal();
+
+      discount = (total > 100) ? 20 : 0;
+
+      displayCart();
+    }
+
+    function calculateTotal() {
+      let total = 0;
+      for (let i = 0; i < cart.length; i++) {
+        total += cart[i].price * cart[i].quantity;
+      }
+      return total;
+    }
+
+    function displayCart() {
+      let output = "";
+
+      for (let i = 0; i < cart.length; i++) {
+        output += (i + 1) + ". " + cart[i].name + " - ₹" + cart[i].price + " × " + cart[i].quantity + "\n";
+      }
+
+      let subtotal = calculateTotal();
+
+      let discountAmount = subtotal * discount / 100;
+      let totalAfterDiscount = subtotal - discountAmount;
+
+      let shipping = (totalAfterDiscount > 50) && "Free Shipping" || "Shipping Charges Apply";
+
+      output += "\nSubtotal: ₹" + subtotal.toFixed(2);
+      output += "\nDiscount: " + discount + "% (-₹" + discountAmount.toFixed(2) + ")";
+      output += "\nTotal (after discount): ₹" + totalAfterDiscount.toFixed(2);
+      output += "\n" + shipping;
+
+      document.getElementById('output').textContent = output;
+    }
+  </script>
+
+</body>
+</html>
+
